@@ -1,0 +1,384 @@
+﻿ /*
+* Copyright 2014 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*/
+
+ /* fix for the accordion content so that no scrolls are shown*/
+.quickViewWindow .ui-accordion-content {
+    
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+        
+}
+
+.product-grid .buttonOverlay,
+.product-list .buttonOverlay {
+    display: none !important;
+}
+
+/********* START BUTTON *********/
+
+
+.quick-view-button {
+    opacity: 0;
+    z-index: 3;
+    -webkit-transition: all .15s ease-in-out;
+    -moz-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+}
+.item-box:hover .quick-view-button {
+    opacity: 1;
+}
+.item-box:hover .description-wrapper {
+    z-index: 2;
+}
+    .product-grid .quick-view-button {
+        bottom: 16px;
+        left: 50%;
+        margin: 0 0 0 -15px;
+    }
+    .product-list .quick-view-button {
+        top: 50%;
+        left: 50%;
+        margin: -35px 0 0 -35px;
+    }
+        .product-list .quick-view-button a {
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+            opacity: .9;
+            background: #e9cbb4 url(images/icon-quick-view.png) no-repeat center;
+        }
+
+.quick-view-button a {
+    width: 31px;
+    height: 31px;
+    text-indent: -9999px;
+    padding: 0;
+    opacity: .7;
+    background: url(images/icon-quick-view.png) no-repeat center;
+    -webkit-transition: all .15s ease-in-out;
+    -moz-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    -webkit-transform: translateZ(0);
+}
+    .quick-view-button a:hover {
+        opacity: 1;
+    }
+
+
+/********** MAIN QUICKVIEW WINDOW **********/
+
+.quickViewWindow {
+    width: 710px;
+}
+
+.quickViewWindow .popup-header {
+    margin-bottom: 12px;
+    border-bottom: 1px dashed #c3c3c3;
+    background: 0;
+    padding: 0;
+}
+    .quickViewWindow .product-name {
+        text-align: center;
+        font-size: 24px;
+        line-height: normal;
+        font-weight: normal;
+        text-shadow: none;
+        color: #555;
+        text-transform: uppercase;
+    }
+
+.quickView .k-window-titlebar.k-header .k-window-actions {
+    top: 5px;
+    right: 5px;
+    width: 12px;
+    height: 12px;    
+}
+.quickView .k-window-titlebar.k-header .k-window-actions a {
+    width: 12px;
+    height: 12px;
+    border: 0;
+    background: transparent url(images/button-close.png) center no-repeat;
+}
+
+/********** GALLERY & OVERVIEW *********/
+
+
+.quickViewWindow .product-essential {
+    padding: 0 10px 15px;
+}
+    .quickViewWindow .gallery {
+        width: 340px;
+    }
+    .quickViewWindow .gallery .picture {
+	    width: 340px;
+        box-shadow: none;
+        border: 0;
+    }
+    .quickViewWindow .gallery .picture img {
+        position: static !important;
+        width: 100%;
+    }
+    .quickView .gallery .picture:before {
+        display: none;
+    }
+        .quickViewWindow .gallery .picture a {
+            width: auto;
+            height: auto;
+        }
+    .quickViewWindow .gallery .thumbnails {
+        margin-top: 0;
+        background: 0;
+        padding: 0;
+    }
+    .quickViewWindow .gallery .thumbnails a, 
+    .quickViewWindow .gallery .thumbnails > img {
+        width: 83px;
+        height: 83px;
+        border: 0;
+        box-shadow: none;
+        margin: 0 1px 2px;
+    }
+
+    .quickViewWindow .links-panel {
+        margin: 0;
+        padding: 20px 0;
+    }
+    .quickViewWindow .links-panel a {
+        background: none;
+        padding-left: 5px;
+        text-align: left;
+        font-size: 20px;
+        text-transform: none;
+        color: #555;
+    }
+
+    .quickViewWindow .overview {
+        margin: 0;
+        width: 330px;
+    }
+
+    .quickViewWindow #accordion {
+        margin: 0 0 35px;
+    }
+    .quickViewWindow #accordion > h3 {
+        border: 0;
+        border-bottom: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background: #ececec;
+        font-size: 20px;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #555;
+        text-shadow: none;
+        margin: 0 0 3px;
+        padding: 2px 8px;
+    }
+    .quickViewWindow #accordion .product-details {
+        border-width: 0;
+        box-shadow: none;
+        padding: 10px 0;
+    }
+
+    .quickViewWindow .overview .short-description, 
+    .quickViewWindow .overview .stock, 
+    .quickViewWindow .overview .manufacturers, 
+    .quickViewWindow .overview .product-reviews-overview {
+        clear: both;
+    }
+    .quickViewWindow #accordion > h3 span {
+        right: 8px;
+        width: 30px;
+        height: 23px;
+        margin: -12px 0 0;
+    }
+    .quickViewWindow .ui-icon-circle-arrow-s,
+    .quickViewWindow .ui-icon-circle-arrow-e {
+        background: url('images/icon-accordion.png') center no-repeat;
+    }
+    .quickViewWindow .back-in-stock-subscription {
+	    clear: left;
+    }
+
+    .quickViewWindow .overview .add-to-cart,
+    .quickViewWindow .overview .prices {
+        margin: 0;
+    }
+
+    .quickViewWindow .attributes select {
+        max-width: 220px;
+    }
+
+    .quickViewWindow .purchase-area .prices {
+        float: right;
+    }
+    .quickViewWindow .overview .add-to-cart {
+        float: left;
+    }
+    .quickViewWindow .overview .qty-label {
+        margin: 0;
+        display: none;
+    }
+
+/********* ATTRIBUTES ********/
+
+.quickViewWindow .overview .attributes dt {
+    line-height: normal;
+}
+.quickViewWindow .overview .attributes dd {
+    margin-bottom: 5px;
+}
+
+
+
+/********** VARIANTS *********/
+
+.quickViewWindow .product-variant-list .item-grid {
+    height: auto;
+}
+
+.quickViewWindow .product-variant {
+    width: 108px;
+    height: 108px;
+    margin: 0 0 3px 3px;
+}
+.quickViewWindow .product-variant:nth-child(3n+1) {
+    margin-left: 0;
+}
+.quickViewWindow .variant-picture {
+    width: auto;
+    height: auto;
+    overflow: visible;
+}
+.quickViewWindow .variant-picture a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    margin: auto;
+}
+.quickViewWindow .variant-info .prices {
+    background: 0;
+    padding: 6px;
+    height: auto;
+}
+    .quickViewWindow .variant-info .prices:before {
+        display: none;
+    }
+.quickViewWindow .variant-info .product-price {
+	color: #d6a985;
+}
+
+.quickViewWindow .moreInfoHover {
+    font-size: 12px;
+}
+
+
+
+/********** RELATED/ALSO-PURCHASED PRODUCTS *********/
+
+
+
+.quickViewWindow .product-grid {
+    padding: 0;
+    margin: 0;
+    background: 0;
+    clear: both;
+}
+.quickViewWindow .product-grid .title {
+    padding: 0;
+    margin: 0 0 5px;
+}
+.quickViewWindow .product-grid .title strong {
+    padding: 0;
+    display: block;
+    font-size: 22px;
+}
+
+.quickViewWindow .product-grid > .title strong:after, 
+.quickViewWindow .product-grid > .title strong:before {
+    display: none;
+}
+
+.quickViewWindow .item-grid {
+    overflow: hidden;
+    padding: 5px 0;
+}
+.quickViewWindow .product-grid .item-box {
+    width: 162px;
+    margin: 0 5px 18px;
+    overflow: hidden;
+}
+.quickViewWindow .item-box:before {
+    padding-top: 130%;
+}
+.quickViewWindow .product-grid .item-box .picture,
+.quickViewWindow .product-grid .item-box .picture a {
+	width: 100%;
+    height: auto;
+}
+.quickViewWindow .description-wrapper {
+    display: none !important;
+}
+.quickViewWindow .item-box .details {
+    height: 40px;
+    overflow: hidden;
+}
+.quickViewWindow .product-grid .item-box .product-title {
+    height: 40px;
+}
+.quickViewWindow .product-grid .item-box .product-title a {
+    display: block;
+    line-height: 1.2;
+    font-size: 17px;
+    height: 40px;
+    color: #555;
+}
+
+
+
+/********* GIFTCARD *********/
+
+
+.quickViewWindow .giftcard {
+	padding-top: 10px;
+    margin-left: 0;
+}
+.quickViewWindow .giftcard div {
+	float: none;
+	width: auto;
+}
+.quickViewWindow .giftcard label {
+    width: 100px;
+    line-height: 32px;
+}
+.quickViewWindow .giftcard input[type="text"], 
+.quickViewWindow .giftcard textarea {
+    min-width: 0;
+    width: 215px;
+    float: none;
+}
+
+
+/****** COLOR SQUARES *****/
+
+.quickViewWindow .color-squares li input {
+    margin: -25px 0 0 !important;
+}
+
+/********* THEME SPECIFIC *********/
+
+.product-list .item-box:hover .ribbon-position {
+    opacity: 0;
+}
+
+/* Fix for CloudZoom in QuickView */
+
+.quickView .gallery {
+    display: block !important;
+}

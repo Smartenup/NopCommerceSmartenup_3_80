@@ -1,0 +1,2 @@
+DataProvider: sqlserver
+DataConnectionString: Data Source=DESKTOP-9TFK3ML;Initial Catalog=db_9b46e6_diego_vbn_1;Integrated Security=False;Persist Security Info=False;User ID=DB_9b46e6_diego_vbn_1_admin;Password=1q2w3e4r5t

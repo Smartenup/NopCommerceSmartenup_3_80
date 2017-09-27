@@ -1,0 +1,363 @@
+﻿@model AddressModel
+@using Nop.Web.Models.Common;
+@if (Model.CountryEnabled && Model.StateProvinceEnabled)
+{
+    <script type="text/javascript">
+    $(function () {
+        $("#@Html.FieldIdFor(model => model.CountryId)").change(function () {
+            var selectedItem = $(this).val();
+            var ddlStates = $("#@Html.FieldIdFor(model => model.StateProvinceId)");
+            var statesProgress = $("#states-loading-progress");
+            statesProgress.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.RouteUrl("GetStatesByCountryId"))",
+                data: { "countryId": selectedItem, "addSelectStateItem": "true" },
+                success: function (data) {
+                    ddlStates.html('');
+                    $.each(data, function (id, option) {
+                        ddlStates.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    statesProgress.hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve states.');
+                    statesProgress.hide();
+                }
+            });
+        });
+    });
+
+    $(function () {
+        $("#@Html.FieldIdFor(model => model.ZipPostalCode)").blur(function () {
+
+            var cep = $("#@Html.FieldIdFor(model => model.ZipPostalCode)");
+            cep = cep.val().replace(/\D/g, "");
+
+            if (cep.length == 8) {
+
+                var city = $("#@Html.FieldIdFor(model => model.City)");
+                var address1 = $("#@Html.FieldIdFor(model => model.Address1)");
+                var address2 = $("#@Html.FieldIdFor(model => model.Address2)");
+
+                var statesProgressCep = $("#states-loading-progress-cep");
+                statesProgressCep.show();
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "http://localhost:15536" + "@(Url.RouteUrl("Plugin.Shipping.Correios.GetAddresByCEP"))",
+                    data: { "cep": cep },
+                    success: function (data) {
+                        try {
+
+                            city.val(data.cidade);
+                            address1.val(data.end);
+                            address2.val(data.bairro);
+
+                            }
+                        catch(err) {
+                            alert('Falha ao ler o retorno dos correios ' + err);
+                        }
+                        finally {
+                            statesProgressCep.hide();
+                        }
+                        
+                    },
+					error: function (xhr, ajaxOptions, thrownError) {
+						alert('Falha ao obter o dados do cep nos correios.');
+						statesProgressCep.hide();
+					}
+				});
+
+
+            } else {
+
+                alert('O CEP deve ter oito números');
+
+            }
+
+
+        });
+    });
+
+    $(function () {
+        $("#@Html.FieldIdFor(model => model.PhoneNumber)").keyup(function () {
+
+            var phoneNumber = $("#@Html.FieldIdFor(model => model.PhoneNumber)").val();
+
+                phoneNumber = mascaraTelefone(phoneNumber);
+
+                $("#@Html.FieldIdFor(model => model.PhoneNumber)").val(phoneNumber);
+
+            });
+        });
+
+        $(function () {
+            $("#address_attribute_3").blur(function () {
+
+                var cpfCnpj = $("#address_attribute_3");
+
+                TestaCPFCNPJ(cpfCnpj);
+
+            });
+        });
+        
+
+
+        function TestaCPFCNPJ(objCPFCNPJ) {
+
+            if (objCPFCNPJ.val().replace(/\D/g, "").length == 11) {
+                valida_cpf(objCPFCNPJ);
+            }
+            else if (objCPFCNPJ.val().replace(/\D/g, "").length == 14) {
+                valida_cnpj(objCPFCNPJ);
+            }
+            else {
+                alert('Preencha o CPF ou CNPJ');
+                objCPFCNPJ.focus();
+            }
+        }
+
+
+
+        function valida_cnpj(campo) {
+
+            var i;
+            var numero;
+            var situacao = '';
+
+            numero = campo.val().replace(/\D/g, "");
+
+            s = numero;
+
+            c = s.substr(0, 12);
+            var dv = s.substr(12, 2);
+            var d1 = 0;
+
+            for (i = 0; i < 12; i++) {
+                d1 += c.charAt(11 - i) * (2 + (i % 8));
+            }
+
+            if (d1 == 0) {
+                var result = "falso";
+            }
+            d1 = 11 - (d1 % 11);
+
+            if (d1 > 9) d1 = 0;
+
+            if (dv.charAt(0) != d1) {
+                var result = "falso";
+            }
+
+            d1 *= 2;
+            for (i = 0; i < 12; i++) {
+                d1 += c.charAt(11 - i) * (2 + ((i + 1) % 8));
+            }
+
+            d1 = 11 - (d1 % 11);
+            if (d1 > 9) d1 = 0;
+
+            if (dv.charAt(1) != d1) {
+                var result = "falso";
+            }
+
+
+            if (result == "falso") {
+                alert("CNPJ inválido!");
+                campo.focus();
+                campo.value = '';
+            }
+        }
+
+    function valida_cpf(campo) {
+
+        var i;
+        var numero;
+
+        numero = campo.val().replace(/\D/g, "");
+
+        s = numero;
+        c = s.substr(0, 9);
+        var dv = s.substr(9, 2);
+        var d1 = 0;
+
+        for (i = 0; i < 9; i++) {
+            d1 += c.charAt(i) * (10 - i);
+        }
+
+        if (d1 == 0) {
+            var result = "falso";
+        }
+
+        d1 = 11 - (d1 % 11);
+        if (d1 > 9) d1 = 0;
+
+        if (dv.charAt(0) != d1) {
+            var result = "falso";
+        }
+
+        d1 *= 2;
+        for (i = 0; i < 9; i++) {
+            d1 += c.charAt(i) * (11 - i);
+        }
+
+        d1 = 11 - (d1 % 11);
+        if (d1 > 9) d1 = 0;
+
+        if (dv.charAt(1) != d1) {
+            var result = "falso";
+        }
+
+
+        if (result == "falso") {
+            alert("CPF inválido!");
+            campo.focus();
+            campo.value = '';
+
+        }
+    }
+
+    function mascaraTelefone(v) {
+        v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+        v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+        v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+        return v;
+    }
+
+    </script>
+}
+@Html.HiddenFor(model => model.Id)
+<div class="edit-address">
+    <div class="inputs">
+        @Html.LabelFor(model => model.FirstName, new { }, ":")
+            @Html.EditorFor(model => model.FirstName)
+        @Html.RequiredHint()
+        @Html.ValidationMessageFor(model => model.FirstName)
+    </div>
+    <div class="inputs">
+        @Html.LabelFor(model => model.LastName, new { }, ":")
+            @Html.EditorFor(model => model.LastName)
+        @Html.RequiredHint()
+        @Html.ValidationMessageFor(model => model.LastName)
+
+    </div>
+    <div class="inputs">
+        @Html.LabelFor(model => model.Email, new { }, ":")
+            @Html.EditorFor(model => model.Email)
+        @Html.RequiredHint()
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    @if (Model.CompanyEnabled)
+    {
+        <div class="inputs">
+            @Html.LabelFor(model => model.Company, new { }, ":")
+                @Html.EditorFor(model => model.Company)
+            @if (Model.CompanyRequired)
+            {
+                @Html.RequiredHint()
+            }
+            @Html.ValidationMessageFor(model => model.Company)
+        </div>
+    }
+    @if (Model.CountryEnabled)
+    {
+        <div class="inputs">
+            @Html.LabelFor(model => model.CountryId, new { }, ":")
+                @Html.DropDownListFor(model => model.CountryId, Model.AvailableCountries)
+            @Html.RequiredHint()
+            @Html.ValidationMessageFor(model => model.CountryId)
+        </div>
+    }
+
+    @if (Model.CountryEnabled && Model.StateProvinceEnabled)
+    {
+        <div class="inputs">
+            @Html.LabelFor(model => model.StateProvinceId, new { }, ":")
+                @Html.DropDownListFor(model => model.StateProvinceId, Model.AvailableStates)
+            <span id="states-loading-progress" style="display: none;" class="please-wait">@T("Common.Wait...")</span>
+            @Html.ValidationMessageFor(model => model.StateProvinceId)
+        </div>
+    }
+    @if (Model.ZipPostalCodeEnabled)
+    {
+        <div class="inputs">
+            @Html.LabelFor(model => model.ZipPostalCode, new { }, ":")
+            @Html.EditorFor(model => model.ZipPostalCode)
+            @if (Model.ZipPostalCodeRequired)
+            {
+                @Html.RequiredHint()
+            }
+            <span id="states-loading-progress-cep" style="display: none;" class="please-wait">@T("Common.Wait...")</span>
+            @Html.ValidationMessageFor(model => model.ZipPostalCode)
+        </div>
+    }
+    @if (Model.CityEnabled)
+    {
+        <div class="inputs">
+            @Html.LabelFor(model => model.City, new { }, ":")
+                @Html.EditorFor(model => model.City)
+
+            @if (Model.CityRequired)
+            {
+                @Html.RequiredHint()
+            }
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+    }
+    @if (Model.StreetAddressEnabled)
+    {
+        <div class="inputs">
+            @Html.LabelFor(model => model.Address1, new { }, ":")
+                @Html.EditorFor(model => model.Address1)
+            @if (Model.StreetAddressRequired)
+            {
+                @Html.RequiredHint()
+            }
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+    }
+    @if (Model.StreetAddress2Enabled)
+    {
+        <div class="inputs">
+            @Html.LabelFor(model => model.Address2, new { }, ":")
+                @Html.EditorFor(model => model.Address2)
+            @if (Model.StreetAddress2Required)
+            {
+                @Html.RequiredHint()
+            }
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+    }
+	@if (Model.CustomAddressAttributes.Count > 0)
+    {
+        @Html.Partial("_AddressAttributes", Model.CustomAddressAttributes)
+    }    
+    
+    @if (Model.PhoneEnabled)
+    {
+        <div class="inputs">
+            @Html.LabelFor(model => model.PhoneNumber, new { }, ":")
+                @Html.EditorFor(model => model.PhoneNumber, new { maxlength = 15 })
+            @if (Model.PhoneRequired)
+            {
+                @Html.RequiredHint()
+            }
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+    }
+    @if (Model.FaxEnabled)
+    {
+        <div class="inputs">
+            @Html.LabelFor(model => model.FaxNumber, new { }, ":")
+                @Html.EditorFor(model => model.FaxNumber)
+            @if (Model.FaxRequired)
+            {
+                @Html.RequiredHint()
+            }
+            @Html.ValidationMessageFor(model => model.FaxNumber)
+        </div>
+    }
+    
+</div>

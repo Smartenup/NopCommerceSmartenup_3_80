@@ -1,0 +1,2 @@
+DataProvider: sqlserver
+DataConnectionString: Data Source=sql5035.smarterasp.net;Initial Catalog=DB_9B46E6_imperioRestore;Integrated Security=False;Persist Security Info=False;User ID=DB_9B46E6_imperioRestore_admin;;Password=uiskas7680;MultipleActiveResultSets=True

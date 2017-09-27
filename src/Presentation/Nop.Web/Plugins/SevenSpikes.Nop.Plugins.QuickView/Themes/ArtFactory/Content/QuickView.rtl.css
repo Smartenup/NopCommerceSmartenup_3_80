@@ -1,0 +1,50 @@
+﻿    .quickViewWindow .overview .add-to-cart {
+	    float: right;
+    }
+    .quickViewWindow .purchase-area .prices {
+	    float: left;
+    }
+
+    .product-grid .quick-view-button,
+        .search-results .product-list .quick-view-button{
+	    right: 50%;
+	    left: auto;
+	    margin: 0 -15px 0 0;
+    }
+    .category-page .product-list .quick-view-button{
+	    right: 50%;
+	    left: auto;
+	    margin: -35px -35px 0 0;
+    }
+    .quickView .k-window-titlebar.k-header .k-window-actions{
+	    left: 5px;
+	    right: auto;
+    }
+    .quickViewWindow .links-panel a{
+	    padding-right: 5px;
+	    padding-left: 0;
+	    text-align: right;
+    }
+    .quickViewWindow #accordion > h3 span{
+	    left: 8px;
+	    right: auto;
+    }
+    .quickViewWindow .back-in-stock-subscription{
+	    clear: right;
+    }
+    .quickViewWindow .product-variant{
+	    margin: 0 3px 3px 0;
+    }
+    .quickViewWindow .product-variant:nth-child(3n+1){
+	    margin-right: 0;
+    }
+    .quickViewWindow .variant-picture a{
+	    left: 0;
+	    right: 0;
+    }
+
+/********* GIFTCARD *********/
+
+    .quickViewWindow .giftcard{
+	    margin-right: 0;
+    }

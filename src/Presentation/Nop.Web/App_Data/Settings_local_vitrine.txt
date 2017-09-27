@@ -1,0 +1,2 @@
+DataProvider: sqlserver
+DataConnectionString: Data Source=DESKTOP-9TFK3ML;Initial Catalog=DB_9D9A32_vitrine;Integrated Security=False;Persist Security Info=False;User ID=DB_9D9A32_vitrine_admin;Password=vitrine123

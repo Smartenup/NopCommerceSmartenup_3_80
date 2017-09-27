@@ -1,0 +1,14 @@
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nopCommerce_3.8_Source_20161128\Presentation\Nop.Web\bin\Nop.Admin.dll.config
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nopCommerce_3.8_Source_20161128\Presentation\Nop.Web\bin\Nop.Admin.dll
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nopCommerce_3.8_Source_20161128\Presentation\Nop.Web\bin\Nop.Admin.pdb
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nopCommerce_3.8_Source_20161128\Presentation\Nop.Web\Administration\obj\Release\Nop.Admin.csproj.App.config
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nopCommerce_3.8_Source_20161128\Presentation\Nop.Web\Administration\obj\Release\Nop.Admin.csprojResolveAssemblyReference.cache
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nopCommerce_3.8_Source_20161128\Presentation\Nop.Web\Administration\obj\Release\Nop.Admin.dll
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nopCommerce_3.8_Source_20161128\Presentation\Nop.Web\Administration\obj\Release\Nop.Admin.pdb
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Presentation\Nop.Web\bin\Nop.Admin.dll.config
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Presentation\Nop.Web\bin\Nop.Admin.dll
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Presentation\Nop.Web\bin\Nop.Admin.pdb
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Presentation\Nop.Web\Administration\obj\Release\Nop.Admin.csproj.App.config
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Presentation\Nop.Web\Administration\obj\Release\Nop.Admin.csprojResolveAssemblyReference.cache
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Presentation\Nop.Web\Administration\obj\Release\Nop.Admin.dll
+C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Presentation\Nop.Web\Administration\obj\Release\Nop.Admin.pdb
