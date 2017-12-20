@@ -37,9 +37,10 @@ input[type="button"],
 input[type="submit"],
 input[type="reset"],
 input[type="text"],
+input[type="email"],
 input[type="password"],
 textarea {
-	border-radius: 0;
+    border-radius: 0;
 }
 input[type="button"],
 input[type="submit"],
@@ -128,12 +129,13 @@ table {
 	border-collapse: collapse;
 }
 input[type="text"],
+input[type="email"],
 input[type="password"],
 textarea, select {
-	height: 44px; /*safari padding fix*/
-	border: 1px solid #f1f1f1;
-	padding: 8px;
-	vertical-align: middle;
+    height: 44px; /*safari padding fix*/
+    border: 1px solid #f1f1f1;
+    padding: 8px;
+    vertical-align: middle;
 }
 input, textarea, select {
     font: normal 13px 'Montserrat', sans-serif;
@@ -150,6 +152,7 @@ select {
     font: normal 14px 'Montserrat', sans-serif;
 }
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus,
 textarea:focus, select:focus {
 	border-color: #d0d0d0;
@@ -416,6 +419,7 @@ label, label + * {
     font-size: 14px;
 }
 .inputs input[type="text"],
+.inputs input[type="email"],
 .inputs input[type="password"],
 .inputs select, .inputs textarea {
     display: block;
@@ -5545,8 +5549,9 @@ label, label + * {
 	margin: 0 0 10px;
 }
 .opc input[type="text"],
+.opc input[type="email"],
 .opc select {
-	max-width: 100%;
+    max-width: 100%;
 }
 .opc .buttons {
 	margin-bottom: 0;

@@ -215,6 +215,7 @@
     height: 32px;
 	border: none;
 }
+.ropc .form-fields button,
 .ropc .coupon-box-panel .coupon-code button,
 .ropc .giftcard-box-panel .coupon-code button {
     float: left;
@@ -229,6 +230,7 @@
     -moz-transition: all .10s ease-in-out;
     transition: all .10s ease-in-out;
 }
+.ropc .form-fields button:hover,
 .ropc .coupon-box-panel .coupon-code button:hover,
 .ropc .giftcard-box-panel .coupon-code button:hover {
     background: #e56363;
@@ -378,6 +380,7 @@
 	width: 250px;
 	margin: 0 -1px 0 0;
 }
+.ropc .form-fields button,
 .ropc .coupon-box-panel .coupon-code button,
 .ropc .giftcard-box-panel .coupon-code button {
 	width: auto;
@@ -400,6 +403,7 @@
 
 .ropc .choose-address select,
 .ropc .inputs input[type="text"],
+.ropc .inputs input[type="email"],
 .ropc .inputs select {
 	width: 100%; /*theme specific*/
 }
@@ -410,6 +414,7 @@
 
 .ropc .coupon-box-panel input[type="text"], 
 .ropc .giftcard-box-panel input[type="text"],
+.ropc .form-fields button,
 .ropc .coupon-box-panel .coupon-code button, 
 .ropc .giftcard-box-panel .coupon-code button {
 	width: 100%;

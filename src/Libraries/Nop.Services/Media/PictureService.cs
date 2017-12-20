@@ -350,8 +350,10 @@ namespace Nop.Services.Media
                 //as described here http://www.nopcommerce.com/boards/t/21356/multi-store-roadmap-lets-discuss-update-done.aspx?p=6#90196
                 if (_httpContext.Request.ServerVariables[name] != null)
                 {
-                    result = _httpContext.Request.ServerVariables[name];
-                    _logger.Information(string.Format("Log for picture: _httpContext.Request.ServerVariables {0}", result));
+                    if (_mediaSettings.LogImagePathGeneration)
+                        _logger.Information(string.Format("Log for picture: _httpContext.Request.ServerVariables {0}", result));
+
+                    result = _httpContext.Request.ServerVariables[name];                    
                 }
             }
             catch

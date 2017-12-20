@@ -6,8 +6,29 @@
   <Setting Name="JCarouselEntitySettings.NumberOfVisibleItems">
     <Value>4</Value>
   </Setting>
+  <Setting Name="JCarouselEntitySettings.ImageSize">
+    <Value>400</Value>
+  </Setting>
+  <Setting Name="JCarouselEntitySettings.ShowItemsName">
+    <Value>True</Value>
+  </Setting>
   <Setting Name="JCarouselEntitySettings.ShowTitle">
     <Value>True</Value>
+  </Setting>
+  <Setting Name="JCarouselEntitySettings.ShowProductsPrice">
+    <Value>True</Value>
+  </Setting>
+  <Setting Name="JCarouselEntitySettings.ShowProductsOldPrice">
+    <Value>True</Value>
+  </Setting>
+  <Setting Name="JCarouselEntitySettings.ShowShortDescription">
+    <Value>False</Value>
+  </Setting>
+  <Setting Name="JCarouselEntitySettings.ShowDetailsButton">
+    <Value>False</Value>
+  </Setting>
+  <Setting Name="JCarouselEntitySettings.ShowRatings">
+    <Value>False</Value>
   </Setting>
   <Setting Name="JCarouselEntitySettings.StartIndex">
     <Value>1</Value>
@@ -18,22 +39,7 @@
   <Setting Name="JCarouselGeneralSettings.Enable">
     <Value>true</Value>
   </Setting>
-  <Setting Name="JCarouselEntitySettings.AutoscrollHoverPause">
-    <Value>True</Value>
-  </Setting>
-  <Setting Name="JCarouselEntitySettings.LoopItems">
-    <Value>True</Value>
-  </Setting>
-  <Setting Name="JCarouselEntitySettings.NavigationDots">
-    <Value>False</Value>
-  </Setting>
-  <Setting Name="JCarouselEntitySettings.NavigationArrows">
-    <Value>True</Value>
-  </Setting>
-  <Setting Name="JCarouselGeneralSettings.DefaultArrowsContainer">
-    <Value>.carousel-title</Value>
-  </Setting>
-  <Setting Name="JCarouselGeneralSettings.DefaultResponsiveBreakpointsForSlickSlider">
-    <Value>[{"breakpoint":876,"settings":{"slidesToShow":3}},{"breakpoint":648,"settings":{"slidesToShow":2}},{"breakpoint":480,"settings":{"slidesToShow":1}}]</Value>
+  <Setting Name="JCarouselGeneralSettings.JCarouselItemMinWidth">
+    <Value>200</Value>
   </Setting>
 </Settings>

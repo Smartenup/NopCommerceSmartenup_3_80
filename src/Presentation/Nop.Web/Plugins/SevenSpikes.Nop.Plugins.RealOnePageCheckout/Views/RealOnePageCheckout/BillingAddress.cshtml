@@ -35,7 +35,9 @@
             </div>
 
             <div class="inputs">
-                <label for="billingEmail">@T("Address.Fields.Email"):</label> <input ng-required="vm.requiredFields['email']" type="text" id="billingEmail" name="billingEmail" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingEmail'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.email" value="{{vm.billingData.selectedBillingAddress.email}}" />
+                <label for="billingEmail">@T("Address.Fields.Email"):</label> 
+                <input ng-required="vm.requiredFields['email']" type="email" id="billingEmail" name="billingEmail"
+                       ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingEmail'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.email" value="{{vm.billingData.selectedBillingAddress.email}}"  />
                 <span class="required">*</span>
             </div>
 
@@ -55,6 +57,16 @@
                 </select>
                 <span ng-show="vm.billingData.settings.countryEnabled" class="required">*</span>
             </div>
+
+            <div class="inputs" ng-hide="vm.billingData.settings.zipPostalCodeEnabled === false">
+                <label for="billingZipPostalCode">
+                    @T("Address.Fields.ZipPostalCode"):
+                </label> <input type="text" ng-required="vm.requiredFields['zipPostalCode']" id="billingZipPostalCode" name="billingZipPostalCode" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingZipPostalCode'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.zipPostalCode" value="{{vm.billingData.selectedBillingAddress.zipPostalCode}}" />
+                <button type="button" ng-keyup="$event.keyCode == 13 ? vm.buscaCEP() : null" ng-click="vm.buscaCEP()">Buscar CEP</button>
+                <span ng-show="vm.billingData.settings.zipPostalCodeRequired" class="required">*</span>
+                <span id="billing-cep-loading-progress" style="display: none;" class="required">@T("Common.Wait...")</span>
+            </div>
+
 			<div class="inputs" ng-hide="vm.billingData.settings.countryEnabled === false || vm.billingData.settings.stateProvinceEnabled === false">
                 <label for="billingStateProvince">
                     @T("Address.Fields.StateProvince"):
@@ -63,28 +75,13 @@
                     <option value="" ng-if="false"></option>
                 </select>
                 <span ng-show="vm.billingData.settings.stateProvinceEnabled" class="required">*</span>
-            </div>			
-			
-			<div class="inputs" ng-hide="vm.billingData.settings.zipPostalCodeEnabled === false">
-                <label for="billingZipPostalCode">
-                    @T("Address.Fields.ZipPostalCode"):
-                </label> <input type="text" ng-blur="vm.buscaCEP()" ng-required="vm.requiredFields['zipPostalCode']" id="billingZipPostalCode" name="billingZipPostalCode" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingZipPostalCode'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.zipPostalCode" value="{{vm.billingData.selectedBillingAddress.zipPostalCode}}" />
-                <span ng-show="vm.billingData.settings.zipPostalCodeRequired" class="required">*</span>
             </div>
-			
-			
+
             <div class="inputs" ng-hide="vm.billingData.settings.cityEnabled === false">
                 <label for="billingCity">
                     @T("Address.Fields.City"):
-                </label> <input type="text" ng-required="vm.requiredFields['city']" id="billingCity" name="billingCity" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingCity'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.city" value="{{vm.billingData.selectedBillingAddress.city}}" />
+                </label> <input type="text" ng-required="vm.requiredFields['city']" ng-minlength="3" id="billingCity" name="billingCity" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingCity'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.city" value="{{vm.billingData.selectedBillingAddress.city}}" />
                 <span ng-show="vm.billingData.settings.cityRequired" class="required">*</span>
-            </div>
-
-            <div class="inputs" ng-hide="vm.billingData.settings.streetAddressEnabled === false">
-                <label for="billingAddress1">
-                    @T("Address.Fields.Address1"):
-                </label> <input type="text" ng-required="vm.requiredFields['address1']" id="billingAddress1" name="billingAddress1" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingAddress1'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.address1" value="{{vm.billingData.selectedBillingAddress.address1}}" />
-                <span ng-show="vm.billingData.settings.streetAddressRequired" class="required">*</span>
             </div>
 
             <div class="inputs" ng-hide="vm.billingData.settings.streetAddress2Enabled === false">
@@ -94,27 +91,18 @@
                 <span ng-show="vm.billingData.settings.streetAddress2Required" class="required">*</span>
             </div>
 
-            
-
-            <div class="inputs" ng-hide="vm.billingData.settings.phoneEnabled === false">
-                <label for="billingPhoneNumber">
-                    @T("Address.Fields.PhoneNumber"):
-                </label> <input type="text" id="billingPhoneNumber" ng-required="vm.requiredFields['phoneNumber']" name="billingPhoneNumber" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingPhoneNumber'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.phoneNumber" value="{{vm.billingData.selectedBillingAddress.phoneNumber}}" />
-                <span ng-show="vm.billingData.settings.phoneRequired" class="required">*</span>
-            </div>
-
-            <div class="inputs" ng-hide="vm.billingData.settings.faxEnabled === false">
-                <label for="billingFaxNumber">
-                    @T("Address.Fields.FaxNumber"):
-                </label> <input type="text" id="billingFaxNumber" ng-required="vm.requiredFields['faxNumber']" name="billingFaxNumber" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingFaxNumber'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.faxNumber" value="{{vm.billingData.selectedBillingAddress.faxNumber}}" />
-                <span ng-show="vm.billingData.settings.faxRequired" class="required">*</span>
-            </div>
-
             <div class="inputs" ng-show="vm.billingData.selectedBillingAddress.country.value | countrySubjectToVat: vm.billingData.countriesSubjectToVat">
                 <label for="billingVatNumber">
                     @T("SevenSpikes.RealOnePageCheckout.Public.VatNumber"):
                 </label> <input type="text" id="billingVatNumber" name="billingVatNumber" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingVatNumber'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.vat.vatNumber" value="{{vm.billingData.selectedBillingAddress.vat.vatNumber}}" />
                 <span>{{vm.billingData.selectedBillingAddress.vat.vatNumberStatus}}</span>
+            </div>
+
+            <div class="inputs" ng-hide="vm.billingData.settings.streetAddressEnabled === false">
+                <label for="billingAddress1">
+                    @T("Address.Fields.Address1"):
+                </label> <input type="text" ng-required="vm.requiredFields['address1']" id="billingAddress1" name="billingAddress1" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingAddress1'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.address1" value="{{vm.billingData.selectedBillingAddress.address1}}" />
+                <span ng-show="vm.billingData.settings.streetAddressRequired" class="required">*</span>
             </div>
             
             <div class="inputs" ng-repeat="attribute in vm.billingData.selectedBillingAddress.customAddressAttributes">
@@ -152,13 +140,34 @@
                         </li>
                     </ul>
 
-                    <input ng-switch-when="TextBox" name="billing_address_attribute_{{attribute.id}}" type="text" ng-change="vm.addressAttributeChanged(vm.modelsData[attribute.id].textBoxModel, attribute)" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-model="vm.modelsData[attribute.id].textBoxModel" class="textbox" id="billing_address_attribute_{{attribute.id}}" ng-required="attribute.isRequired" />
+                    <input ng-switch-when="TextBox" name="billing_address_attribute_{{attribute.id}}" type="text"
+                           ng-change="vm.addressAttributeChanged(vm.modelsData[attribute.id].textBoxModel, attribute)"
+                           ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }"
+                           ng-model="vm.modelsData[attribute.id].textBoxModel"
+                           class="textbox" id="billing_address_attribute_{{attribute.id}}"
+                           ng-required="attribute.isRequired"
+                           validar-cpf-cnpj/>
 
                     <textarea ng-switch-when="MultilineTextbox" id="billing_address_attribute_{{attribute.id}}" ng-change="vm.addressAttributeChanged(vm.modelsData[attribute.id].multilineTextboxModel, attribute)" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-model="vm.modelsData[attribute.id].multilineTextboxModel" name="billing_address_attribute_{{attribute.id}}" ng-required="attribute.isRequired"></textarea>
 
                     <span ng-show="attribute.isRequired" class="required">*</span>
                 </div>
             </div>
+
+            <div class="inputs" ng-hide="vm.billingData.settings.phoneEnabled === false">
+                <label for="billingPhoneNumber">
+                    @T("Address.Fields.PhoneNumber"):
+                </label> <input type="text" id="billingPhoneNumber" ng-required="vm.requiredFields['phoneNumber']" name="billingPhoneNumber" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingPhoneNumber'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.phoneNumber" value="{{vm.billingData.selectedBillingAddress.phoneNumber}}" ng-pattern="/^\(\d{2}\)\s\d{4,5}-\d{4}$/" ui-telefone />
+                <span ng-show="vm.billingData.settings.phoneRequired" class="required">*</span>
+            </div>
+
+            <div class="inputs" ng-hide="vm.billingData.settings.faxEnabled === false">
+                <label for="billingFaxNumber">
+                    @T("Address.Fields.FaxNumber"):
+                </label> <input type="text" id="billingFaxNumber" ng-required="vm.requiredFields['faxNumber']" name="billingFaxNumber" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : billingForm['billingFaxNumber'].$invalid && billingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.billingData.selectedBillingAddress.faxNumber" value="{{vm.billingData.selectedBillingAddress.faxNumber}}" />
+                <span ng-show="vm.billingData.settings.faxRequired" class="required">*</span>
+            </div>
+
 
             <div class="options ship-to-same-address" ng-hide="vm.configData.shipToSameAddressDisabled">
                 <input type="checkbox" id="shipToSameAddress" name="shipToSameAddress" ng-model="vm.shipToSameAddress" value="{{vm.shipToSameAddress}}" />

@@ -38,7 +38,7 @@
             <div class="inputs">
                 <label for="shippingEmail">
                     @T("Address.Fields.Email"):
-                </label> <input type="text" id="shippingEmail" name="shippingEmail" ng-required="vm.requiredFields['email']" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : shippingForm['shippingEmail'].$invalid && shippingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.shippingData.selectedShippingAddress.email" value="{{vm.shippingData.selectedShippingAddress.email}}" />
+                </label> <input type="email" id="shippingEmail" name="shippingEmail" ng-required="vm.requiredFields['email']" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : shippingForm['shippingEmail'].$invalid && shippingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.shippingData.selectedShippingAddress.email" value="{{vm.shippingData.selectedShippingAddress.email}}" />
                 <span class="required">*</span>
             </div>
 
@@ -61,6 +61,15 @@
                 <span ng-show="vm.shippingData.settings.countryEnabled" class="required">*</span>
             </div>
 
+            <div class="inputs" ng-hide="vm.shippingData.settings.zipPostalCodeEnabled === false">
+                <label for="shippingZipPostalCode">
+                    @T("Address.Fields.ZipPostalCode"):
+                </label> <input type="text" id="shippingZipPostalCode"  ng-required="vm.requiredFields['zipPostalCode']" name="shippingZipPostalCode" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : shippingForm['shippingZipPostalCode'].$invalid && shippingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.shippingData.selectedShippingAddress.zipPostalCode" value="{{vm.shippingData.selectedShippingAddress.zipPostalCode}}" />
+                <button type="button" ng-keyup="$event.keyCode == 13 ? vm.buscaCEP() : null" ng-click="vm.buscaCEP()">Buscar CEP</button>
+                <span ng-show="vm.shippingData.settings.zipPostalCodeRequired" class="required">*</span>
+                <span id="shipping-cep-loading-progress" style="display: none;" class="required">@T("Common.Wait...")</span>
+            </div>			
+
             <div class="inputs" ng-hide="vm.shippingData.settings.countryEnabled === false || vm.shippingData.settings.stateProvinceEnabled === false">
                 <label for="shippingStateProvince">
                     @T("Address.Fields.StateProvince"):
@@ -69,16 +78,8 @@
                     <option value="" ng-if="false"></option>
                 </select>
                 <span ng-show="vm.shippingData.settings.stateProvinceEnabled" class="required">*</span>
-            </div>
-			
-			<div class="inputs" ng-hide="vm.shippingData.settings.zipPostalCodeEnabled === false">
-                <label for="shippingZipPostalCode">
-                    @T("Address.Fields.ZipPostalCode"):
-                </label> <input type="text" id="shippingZipPostalCode" ng-blur="vm.buscaCEP()" ng-required="vm.requiredFields['zipPostalCode']" name="shippingZipPostalCode" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : shippingForm['shippingZipPostalCode'].$invalid && shippingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.shippingData.selectedShippingAddress.zipPostalCode" value="{{vm.shippingData.selectedShippingAddress.zipPostalCode}}"
-					
-				/>
-                <span ng-show="vm.shippingData.settings.zipPostalCodeRequired" class="required">*</span>
-            </div>			
+            </div>		
+
 
             <div class="inputs" ng-hide="vm.shippingData.settings.cityEnabled === false">
                 <label for="shippingCity">
@@ -99,22 +100,6 @@
                     @T("Address.Fields.Address2"):
                 </label> <input type="text" id="shippingAddress2" ng-required="vm.requiredFields['address2']" name="shippingAddress2" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : shippingForm['shippingAddress2'].$invalid && shippingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.shippingData.selectedShippingAddress.address2" value="{{vm.shippingData.selectedShippingAddress.address2}}" />
                 <span ng-show="vm.shippingData.settings.streetAddress2Required" class="required">*</span>
-            </div>
-
-            
-
-            <div class="inputs" ng-hide="vm.shippingData.settings.phoneEnabled === false">
-                <label for="shippingPhoneNumber">
-                    @T("Address.Fields.PhoneNumber"):
-                </label> <input type="text" id="shippingPhoneNumber" ng-required="vm.requiredFields['phoneNumber']" name="shippingPhoneNumber" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : shippingForm['shippingPhoneNumber'].$invalid && shippingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.shippingData.selectedShippingAddress.phoneNumber" value="{{vm.shippingData.selectedShippingAddress.phoneNumber}}" />
-                <span ng-show="vm.shippingData.settings.phoneRequired" class="required">*</span>
-            </div>
-
-            <div class="inputs" ng-hide="vm.shippingData.settings.faxEnabled === false">
-                <label for="shippingFaxNumber">
-                    @T("Address.Fields.FaxNumber"):
-                </label> <input type="text" id="shippingFaxNumber" ng-required="vm.requiredFields['faxNumber']" name="shippingFaxNumber" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : shippingForm['shippingFaxNumber'].$invalid && shippingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.shippingData.selectedShippingAddress.faxNumber" value="{{vm.shippingData.selectedShippingAddress.faxNumber}}" />
-                <span ng-show="vm.shippingData.settings.faxRequired" class="required">*</span>
             </div>
 
             <div class="inputs" ng-repeat="attribute in vm.shippingData.selectedShippingAddress.customAddressAttributes">
@@ -152,12 +137,34 @@
                         </li>
                     </ul>
 
-                    <input ng-switch-when="TextBox" name="shipping_address_attribute_{{attribute.id}}" type="text" ng-change="vm.addressAttributeChanged(vm.modelsData[attribute.id].textBoxModel, attribute)" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-model="vm.modelsData[attribute.id].textBoxModel" ng-value="vm.modelsData[attribute.id].textBoxModel" class="textbox" id="shipping_address_attribute_{{attribute.id}}" ng-required="vm.configData.isVisible && attribute.isRequired" />
+                    <input ng-switch-when="TextBox" name="shipping_address_attribute_{{attribute.id}}" type="text" 
+                           ng-change="vm.addressAttributeChanged(vm.modelsData[attribute.id].textBoxModel, attribute)" 
+                           ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" 
+                           ng-model="vm.modelsData[attribute.id].textBoxModel" 
+                           ng-value="vm.modelsData[attribute.id].textBoxModel" 
+                           class="textbox" 
+                           id="shipping_address_attribute_{{attribute.id}}" 
+                           ng-required="vm.configData.isVisible && attribute.isRequired"
+                           validar-cpf-cnpj/>
 
                     <textarea ng-switch-when="MultilineTextbox" id="shipping_address_attribute_{{attribute.id}}" ng-change="vm.addressAttributeChanged(vm.modelsData[attribute.id].multilineTextboxModel, attribute)" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-model="vm.modelsData[attribute.id].multilineTextboxModel" ng-value="vm.modelsData[attribute.id].multilineTextboxModel" name="shipping_address_attribute_{{attribute.id}}" ng-required="vm.configData.isVisible && attribute.isRequired"></textarea>
 
                     <span ng-show="attribute.isRequired" class="required">*</span>
                 </div>
+            </div>
+
+            <div class="inputs" ng-hide="vm.shippingData.settings.phoneEnabled === false">
+                <label for="shippingPhoneNumber">
+                    @T("Address.Fields.PhoneNumber"):
+                </label> <input type="text" id="shippingPhoneNumber" ng-required="vm.requiredFields['phoneNumber']" name="shippingPhoneNumber" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : shippingForm['shippingPhoneNumber'].$invalid && shippingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.shippingData.selectedShippingAddress.phoneNumber" value="{{vm.shippingData.selectedShippingAddress.phoneNumber}}" ng-pattern="/^\(\d{2}\)\s\d{4,5}-\d{4}$/" ui-telefone />
+                <span ng-show="vm.shippingData.settings.phoneRequired" class="required">*</span>
+            </div>
+
+            <div class="inputs" ng-hide="vm.shippingData.settings.faxEnabled === false">
+                <label for="shippingFaxNumber">
+                    @T("Address.Fields.FaxNumber"):
+                </label> <input type="text" id="shippingFaxNumber" ng-required="vm.requiredFields['faxNumber']" name="shippingFaxNumber" ng-model-options="{ updateOn: 'default blur', debounce: {'default': @debounceTime, 'blur': 0} }" ng-class="{'has-error' : shippingForm['shippingFaxNumber'].$invalid && shippingForm.$$parentForm.sySubmitted, 'required' : field.required}" ng-model="vm.shippingData.selectedShippingAddress.faxNumber" value="{{vm.shippingData.selectedShippingAddress.faxNumber}}" />
+                <span ng-show="vm.shippingData.settings.faxRequired" class="required">*</span>
             </div>
 
         </div>
