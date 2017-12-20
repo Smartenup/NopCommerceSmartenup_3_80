@@ -22,3 +22,14 @@ C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\No
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.csprojResolveAssemblyReference.cache
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.dll
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.pdb
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Views\PaymentPurchaseOrder\Configure.cshtml
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Views\PaymentPurchaseOrder\PaymentInfo.cshtml
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\web.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Description.txt
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\logo.jpg
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Nop.Plugin.Payments.PurchaseOrder.dll.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Nop.Plugin.Payments.PurchaseOrder.dll
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Nop.Plugin.Payments.PurchaseOrder.pdb
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.csproj.App.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.dll
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.pdb

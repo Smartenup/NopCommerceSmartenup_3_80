@@ -20,3 +20,14 @@ C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\No
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.Shipping.FixedRateShipping\obj\Debug\Nop.Plugin.Shipping.FixedRateShipping.csprojResolveAssemblyReference.cache
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.Shipping.FixedRateShipping\obj\Debug\Nop.Plugin.Shipping.FixedRateShipping.dll
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.Shipping.FixedRateShipping\obj\Debug\Nop.Plugin.Shipping.FixedRateShipping.pdb
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Shipping.FixedRateShipping\Views\ShippingFixedRate\Configure.cshtml
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Shipping.FixedRateShipping\Description.txt
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Shipping.FixedRateShipping\web.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Shipping.FixedRateShipping\logo.jpg
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Shipping.FixedRateShipping\Nop.Plugin.Shipping.FixedRateShipping.dll.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Shipping.FixedRateShipping\Nop.Plugin.Shipping.FixedRateShipping.dll
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Shipping.FixedRateShipping\Nop.Plugin.Shipping.FixedRateShipping.pdb
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.Shipping.FixedRateShipping\obj\Debug\Nop.Plugin.Shipping.FixedRateShipping.csproj.App.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.Shipping.FixedRateShipping\obj\Debug\Nop.Plugin.Shipping.FixedRateShipping.csprojResolveAssemblyReference.cache
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.Shipping.FixedRateShipping\obj\Debug\Nop.Plugin.Shipping.FixedRateShipping.dll
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.Shipping.FixedRateShipping\obj\Debug\Nop.Plugin.Shipping.FixedRateShipping.pdb

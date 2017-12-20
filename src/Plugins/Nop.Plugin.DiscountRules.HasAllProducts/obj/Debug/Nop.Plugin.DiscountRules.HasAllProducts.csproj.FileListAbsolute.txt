@@ -22,3 +22,14 @@ C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\No
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.DiscountRules.HasAllProducts\obj\Debug\Nop.Plugin.DiscountRules.HasAllProducts.csprojResolveAssemblyReference.cache
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.DiscountRules.HasAllProducts\obj\Debug\Nop.Plugin.DiscountRules.HasAllProducts.dll
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.DiscountRules.HasAllProducts\obj\Debug\Nop.Plugin.DiscountRules.HasAllProducts.pdb
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\DiscountRules.HasAllProducts\Views\DiscountRulesHasAllProducts\Configure.cshtml
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\DiscountRules.HasAllProducts\Description.txt
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\DiscountRules.HasAllProducts\web.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\DiscountRules.HasAllProducts\Views\DiscountRulesHasAllProducts\ProductAddPopup.cshtml
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\DiscountRules.HasAllProducts\logo.jpg
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\DiscountRules.HasAllProducts\Nop.Plugin.DiscountRules.HasAllProducts.dll.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\DiscountRules.HasAllProducts\Nop.Plugin.DiscountRules.HasAllProducts.dll
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\DiscountRules.HasAllProducts\Nop.Plugin.DiscountRules.HasAllProducts.pdb
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.DiscountRules.HasAllProducts\obj\Debug\Nop.Plugin.DiscountRules.HasAllProducts.csproj.App.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.DiscountRules.HasAllProducts\obj\Debug\Nop.Plugin.DiscountRules.HasAllProducts.dll
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.DiscountRules.HasAllProducts\obj\Debug\Nop.Plugin.DiscountRules.HasAllProducts.pdb

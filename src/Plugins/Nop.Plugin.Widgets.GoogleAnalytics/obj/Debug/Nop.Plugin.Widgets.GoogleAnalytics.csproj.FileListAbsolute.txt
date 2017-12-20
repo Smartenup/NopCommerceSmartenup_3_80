@@ -19,3 +19,13 @@ C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\No
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.Widgets.GoogleAnalytics\obj\Debug\Nop.Plugin.Widgets.GoogleAnalytics.csprojResolveAssemblyReference.cache
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.Widgets.GoogleAnalytics\obj\Debug\Nop.Plugin.Widgets.GoogleAnalytics.dll
 C:\Users\uiska\Documents\Visual Studio 2015\Projects\nop_3.8_20161128\Plugins\Nop.Plugin.Widgets.GoogleAnalytics\obj\Debug\Nop.Plugin.Widgets.GoogleAnalytics.pdb
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\Views\WidgetsGoogleAnalytics\Configure.cshtml
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\web.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\Description.txt
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\logo.jpg
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\Nop.Plugin.Widgets.GoogleAnalytics.dll.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\Nop.Plugin.Widgets.GoogleAnalytics.dll
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\Nop.Plugin.Widgets.GoogleAnalytics.pdb
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.Widgets.GoogleAnalytics\obj\Debug\Nop.Plugin.Widgets.GoogleAnalytics.csproj.App.config
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.Widgets.GoogleAnalytics\obj\Debug\Nop.Plugin.Widgets.GoogleAnalytics.dll
+C:\Users\uiska\Source\Repos\NopCommerceSmartenup_3_80\src\Plugins\Nop.Plugin.Widgets.GoogleAnalytics\obj\Debug\Nop.Plugin.Widgets.GoogleAnalytics.pdb
