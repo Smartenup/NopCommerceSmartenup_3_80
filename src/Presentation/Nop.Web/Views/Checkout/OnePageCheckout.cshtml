@@ -161,8 +161,8 @@
                     </script>
                     <div class="buttons" id="payment-info-buttons-container">
                         <p class="back-link">
-                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>@T("Common.Back")</a></p>
-                        <input type="button" class="button-1 payment-info-next-step-button" onclick="PaymentInfo.save()" value="@T("Common.Continue")" />
+                            <a href="#" onclick="Checkout.back(); return false;" id="paymentoInfoBack"><small>&laquo; </small>@T("Common.Back")</a></p>
+                        <input type="button" class="button-1 payment-info-next-step-button" id="paymentoInfoConfirm" onclick="PaymentInfo.save()" value="@T("Common.Continue")" />
                         <span class="please-wait" id="payment-info-please-wait" style="display: none;">@T("Common.LoadingNextStep")</span>
                     </div>
                 </div>

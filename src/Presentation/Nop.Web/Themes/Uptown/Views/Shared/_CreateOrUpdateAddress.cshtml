@@ -37,6 +37,7 @@
 
             if (cep.length == 8) {
 
+                var stateProvince = $("#@Html.FieldIdFor(model => model.StateProvinceId)");
                 var city = $("#@Html.FieldIdFor(model => model.City)");
                 var address1 = $("#@Html.FieldIdFor(model => model.Address1)");
                 var address2 = $("#@Html.FieldIdFor(model => model.Address2)");
@@ -52,11 +53,24 @@
                     success: function (data) {
                         try {
 
-                            city.val(data.cidade);
-                            address1.val(data.end);
-                            address2.val(data.bairro);
-
+                            if (data.uf.length > 0) {
+                                stateProvince.val(data.uf).change();
+                                city.focus();
                             }
+                            if (data.cidade.length > 0) {
+                                city.val(data.cidade);
+                                address2.focus();
+                            }
+                            if (data.bairro.length > 0) {
+                                address2.val(data.bairro);
+                                address2.focus();
+                            }
+                            if (data.end.length > 0) {
+                                address1.val(data.end);
+                                address1.focus();
+                            }
+                            
+                        }
                         catch(err) {
                             alert('Falha ao ler o retorno dos correios ' + err);
                         }
@@ -103,8 +117,6 @@
 
             });
         });
-        
-
 
         function TestaCPFCNPJ(objCPFCNPJ) {
 
@@ -116,11 +128,8 @@
             }
             else {
                 alert('Preencha o CPF ou CNPJ');
-                objCPFCNPJ.focus();
             }
         }
-
-
 
         function valida_cnpj(campo) {
 
@@ -166,198 +175,204 @@
 
             if (result == "falso") {
                 alert("CNPJ inválido!");
-                campo.focus();
                 campo.value = '';
             }
         }
 
-    function valida_cpf(campo) {
+        function valida_cpf(campo) {
 
-        var i;
-        var numero;
+            var i;
+            var numero;
 
-        numero = campo.val().replace(/\D/g, "");
+            numero = campo.val().replace(/\D/g, "");
 
-        s = numero;
-        c = s.substr(0, 9);
-        var dv = s.substr(9, 2);
-        var d1 = 0;
+            s = numero;
+            c = s.substr(0, 9);
+            var dv = s.substr(9, 2);
+            var d1 = 0;
 
-        for (i = 0; i < 9; i++) {
-            d1 += c.charAt(i) * (10 - i);
+            for (i = 0; i < 9; i++) {
+                d1 += c.charAt(i) * (10 - i);
+            }
+
+            if (d1 == 0) {
+                var result = "falso";
+            }
+
+            d1 = 11 - (d1 % 11);
+            if (d1 > 9) d1 = 0;
+
+            if (dv.charAt(0) != d1) {
+                var result = "falso";
+            }
+
+            d1 *= 2;
+            for (i = 0; i < 9; i++) {
+                d1 += c.charAt(i) * (11 - i);
+            }
+
+            d1 = 11 - (d1 % 11);
+            if (d1 > 9) d1 = 0;
+
+            if (dv.charAt(1) != d1) {
+                var result = "falso";
+            }
+
+
+            if (result == "falso") {
+                alert("CPF inválido!");
+                campo.value = '';
+
+            }
         }
 
-        if (d1 == 0) {
-            var result = "falso";
+        function mascaraTelefone(v) {
+            v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+            v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+            v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+            return v;
         }
 
-        d1 = 11 - (d1 % 11);
-        if (d1 > 9) d1 = 0;
+        $(document).ready(function () {
+            var country = $("#@Html.FieldIdFor(model => model.CountryId)");
 
-        if (dv.charAt(0) != d1) {
-            var result = "falso";
-        }
-
-        d1 *= 2;
-        for (i = 0; i < 9; i++) {
-            d1 += c.charAt(i) * (11 - i);
-        }
-
-        d1 = 11 - (d1 % 11);
-        if (d1 > 9) d1 = 0;
-
-        if (dv.charAt(1) != d1) {
-            var result = "falso";
-        }
-
-
-        if (result == "falso") {
-            alert("CPF inválido!");
-            campo.focus();
-            campo.value = '';
-
-        }
-    }
-
-    function mascaraTelefone(v) {
-        v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
-        v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
-        v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
-        return v;
-    }
+            country.val(17).change();
+        });
 
     </script>
 }
 @Html.HiddenFor(model => model.Id)
-<div class="edit-address">
-    <div class="inputs">
-        @Html.LabelFor(model => model.FirstName, new { }, ":")
+    <div class="edit-address">
+        <div class="inputs">
+            @Html.LabelFor(model => model.FirstName, new { }, ":")
             @Html.EditorFor(model => model.FirstName)
-        @Html.RequiredHint()
-        @Html.ValidationMessageFor(model => model.FirstName)
-    </div>
-    <div class="inputs">
-        @Html.LabelFor(model => model.LastName, new { }, ":")
-            @Html.EditorFor(model => model.LastName)
-        @Html.RequiredHint()
-        @Html.ValidationMessageFor(model => model.LastName)
-
-    </div>
-    <div class="inputs">
-        @Html.LabelFor(model => model.Email, new { }, ":")
-            @Html.EditorFor(model => model.Email)
-        @Html.RequiredHint()
-        @Html.ValidationMessageFor(model => model.Email)
-    </div>
-    @if (Model.CompanyEnabled)
-    {
-        <div class="inputs">
-            @Html.LabelFor(model => model.Company, new { }, ":")
-                @Html.EditorFor(model => model.Company)
-            @if (Model.CompanyRequired)
-            {
-                @Html.RequiredHint()
-            }
-            @Html.ValidationMessageFor(model => model.Company)
-        </div>
-    }
-    @if (Model.CountryEnabled)
-    {
-        <div class="inputs">
-            @Html.LabelFor(model => model.CountryId, new { }, ":")
-                @Html.DropDownListFor(model => model.CountryId, Model.AvailableCountries)
             @Html.RequiredHint()
-            @Html.ValidationMessageFor(model => model.CountryId)
+            @Html.ValidationMessageFor(model => model.FirstName)
         </div>
-    }
+        <div class="inputs">
+            @Html.LabelFor(model => model.LastName, new { }, ":")
+            @Html.EditorFor(model => model.LastName)
+            @Html.RequiredHint()
+            @Html.ValidationMessageFor(model => model.LastName)
 
-    @if (Model.CountryEnabled && Model.StateProvinceEnabled)
-    {
-        <div class="inputs">
-            @Html.LabelFor(model => model.StateProvinceId, new { }, ":")
-                @Html.DropDownListFor(model => model.StateProvinceId, Model.AvailableStates)
-            <span id="states-loading-progress" style="display: none;" class="please-wait">@T("Common.Wait...")</span>
-            @Html.ValidationMessageFor(model => model.StateProvinceId)
         </div>
-    }
-    @if (Model.ZipPostalCodeEnabled)
-    {
         <div class="inputs">
-            @Html.LabelFor(model => model.ZipPostalCode, new { }, ":")
-            @Html.EditorFor(model => model.ZipPostalCode)
-            @if (Model.ZipPostalCodeRequired)
-            {
+            @Html.LabelFor(model => model.Email, new { }, ":")
+            @Html.EditorFor(model => model.Email)
+            @Html.RequiredHint()
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        @if (Model.CompanyEnabled)
+        {
+            <div class="inputs">
+                @Html.LabelFor(model => model.Company, new { }, ":")
+                @Html.EditorFor(model => model.Company)
+                @if (Model.CompanyRequired)
+                {
+                    @Html.RequiredHint()
+                }
+                @Html.ValidationMessageFor(model => model.Company)
+            </div>
+        }
+        @if (Model.ZipPostalCodeEnabled)
+        {
+            <div class="inputs">
+                @Html.LabelFor(model => model.ZipPostalCode, new { }, ":")
+                @Html.EditorFor(model => model.ZipPostalCode)
+                @if (Model.ZipPostalCodeRequired)
+                {
+                    @Html.RequiredHint()
+                }
+                <span id="states-loading-progress-cep" style="display: none;" class="please-wait">@T("Common.Wait...")</span>
+                @Html.ValidationMessageFor(model => model.ZipPostalCode)
+            </div>
+        }
+        @if (Model.CountryEnabled)
+        {
+            <div class="inputs">
+                @Html.LabelFor(model => model.CountryId, new { }, ":")
+                @Html.DropDownListFor(model => model.CountryId, Model.AvailableCountries)
                 @Html.RequiredHint()
-            }
-            <span id="states-loading-progress-cep" style="display: none;" class="please-wait">@T("Common.Wait...")</span>
-            @Html.ValidationMessageFor(model => model.ZipPostalCode)
-        </div>
-    }
-    @if (Model.CityEnabled)
-    {
-        <div class="inputs">
-            @Html.LabelFor(model => model.City, new { }, ":")
+                @Html.ValidationMessageFor(model => model.CountryId)
+            </div>
+        }
+
+        @if (Model.CountryEnabled && Model.StateProvinceEnabled)
+        {
+            <div class="inputs">
+                @Html.LabelFor(model => model.StateProvinceId, new { }, ":")
+                @Html.DropDownListFor(model => model.StateProvinceId, Model.AvailableStates)
+                <span id="states-loading-progress" style="display: none;" class="please-wait">@T("Common.Wait...")</span>
+                @Html.ValidationMessageFor(model => model.StateProvinceId)
+            </div>
+        }
+
+        @if (Model.CityEnabled)
+        {
+            <div class="inputs">
+                @Html.LabelFor(model => model.City, new { }, ":")
                 @Html.EditorFor(model => model.City)
 
-            @if (Model.CityRequired)
-            {
-                @Html.RequiredHint()
-            }
-            @Html.ValidationMessageFor(model => model.City)
-        </div>
-    }
-    @if (Model.StreetAddressEnabled)
-    {
-        <div class="inputs">
-            @Html.LabelFor(model => model.Address1, new { }, ":")
-                @Html.EditorFor(model => model.Address1)
-            @if (Model.StreetAddressRequired)
-            {
-                @Html.RequiredHint()
-            }
-            @Html.ValidationMessageFor(model => model.Address1)
-        </div>
-    }
-    @if (Model.StreetAddress2Enabled)
-    {
-        <div class="inputs">
-            @Html.LabelFor(model => model.Address2, new { }, ":")
+                @if (Model.CityRequired)
+                {
+                    @Html.RequiredHint()
+                }
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        }
+        @if (Model.StreetAddress2Enabled)
+        {
+            <div class="inputs">
+                @Html.LabelFor(model => model.Address2, new { }, ":")
                 @Html.EditorFor(model => model.Address2)
-            @if (Model.StreetAddress2Required)
-            {
-                @Html.RequiredHint()
-            }
-            @Html.ValidationMessageFor(model => model.Address2)
-        </div>
-    }
-	@if (Model.CustomAddressAttributes.Count > 0)
-    {
-        @Html.Partial("_AddressAttributes", Model.CustomAddressAttributes)
-    }    
-    
-    @if (Model.PhoneEnabled)
-    {
-        <div class="inputs">
-            @Html.LabelFor(model => model.PhoneNumber, new { }, ":")
+                @if (Model.StreetAddress2Required)
+                {
+                    @Html.RequiredHint()
+                }
+                @Html.ValidationMessageFor(model => model.Address2)
+            </div>
+        }
+        @if (Model.StreetAddressEnabled)
+        {
+            <div class="inputs">
+                @Html.LabelFor(model => model.Address1, new { }, ":")
+                @Html.EditorFor(model => model.Address1)
+                @if (Model.StreetAddressRequired)
+                {
+                    @Html.RequiredHint()
+                }
+                @Html.ValidationMessageFor(model => model.Address1)
+            </div>
+        }
+
+        @if (Model.CustomAddressAttributes.Count > 0)
+        {
+            @Html.Partial("_AddressAttributes", Model.CustomAddressAttributes)
+        }
+
+        @if (Model.PhoneEnabled)
+        {
+            <div class="inputs">
+                @Html.LabelFor(model => model.PhoneNumber, new { }, ":")
                 @Html.EditorFor(model => model.PhoneNumber, new { maxlength = 15 })
-            @if (Model.PhoneRequired)
-            {
-                @Html.RequiredHint()
-            }
-            @Html.ValidationMessageFor(model => model.PhoneNumber)
-        </div>
-    }
-    @if (Model.FaxEnabled)
-    {
-        <div class="inputs">
-            @Html.LabelFor(model => model.FaxNumber, new { }, ":")
+                @if (Model.PhoneRequired)
+                {
+                    @Html.RequiredHint()
+                }
+                @Html.ValidationMessageFor(model => model.PhoneNumber)
+            </div>
+        }
+        @if (Model.FaxEnabled)
+        {
+            <div class="inputs">
+                @Html.LabelFor(model => model.FaxNumber, new { }, ":")
                 @Html.EditorFor(model => model.FaxNumber)
-            @if (Model.FaxRequired)
-            {
-                @Html.RequiredHint()
-            }
-            @Html.ValidationMessageFor(model => model.FaxNumber)
-        </div>
-    }
-    
-</div>
+                @if (Model.FaxRequired)
+                {
+                    @Html.RequiredHint()
+                }
+                @Html.ValidationMessageFor(model => model.FaxNumber)
+            </div>
+        }
+
+    </div>

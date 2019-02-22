@@ -228,46 +228,7 @@ namespace Nop.Services.Common
         /// <returns>Warnings</returns>
         public virtual IList<string> GetAttributeWarnings(string attributesXml)
         {
-            var warnings = new List<string>();
-
-            //ensure it's our attributes
-            var attributes1 = ParseAddressAttributes(attributesXml);
-
-            //validate required address attributes (whether they're chosen/selected/entered)
-            var attributes2 = _addressAttributeService.GetAllAddressAttributes();
-            foreach (var a2 in attributes2)
-            {
-                if (a2.IsRequired)
-                {
-                    bool found = false;
-                    //selected address attributes
-                    foreach (var a1 in attributes1)
-                    {
-                        if (a1.Id == a2.Id)
-                        {
-                            var valuesStr = ParseValues(attributesXml, a1.Id);
-                            foreach (string str1 in valuesStr)
-                            {
-                                if (!String.IsNullOrEmpty(str1.Trim()))
-                                {
-                                    found = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                    //if not found
-                    if (!found)
-                    {
-                        var notFoundWarning = string.Format(_localizationService.GetResource("ShoppingCart.SelectAttribute"), a2.GetLocalized(a => a.Name));
-
-                        warnings.Add(notFoundWarning);
-                    }
-                }
-            }
-
-            return warnings;
+            return GetAttributeWarningsSUP(attributesXml);
         }
 
     }

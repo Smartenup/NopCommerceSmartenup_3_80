@@ -204,6 +204,7 @@
     <Compile Include="Catalog\IPriceFormatter.cs" />
     <Compile Include="Catalog\ProductAttributeFormatter.cs" />
     <Compile Include="Catalog\ProductAttributeParser.cs" />
+    <Compile Include="Common\AddressAttributeParserSUP.cs" />
     <Compile Include="Directory\IStateProvinceServiceSU.cs" />
     <Compile Include="Directory\StateProvinceServiceSU.cs" />
     <Compile Include="Extensions.cs" />

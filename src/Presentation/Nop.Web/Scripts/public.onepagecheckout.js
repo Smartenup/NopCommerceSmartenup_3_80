@@ -2,7 +2,6 @@
 ** nopCommerce one page checkout
 */
 
-
 var Checkout = {
     loadWaiting: false,
     failureUrl: false,
@@ -100,9 +99,6 @@ var Checkout = {
         return false;
     }
 };
-
-
-
 
 
 var Billing = {
@@ -396,6 +392,8 @@ var PaymentInfo = {
         if (Checkout.loadWaiting != false) return;
         
         Checkout.setLoadWaiting('payment-info');
+
+
         $.ajax({
             cache: false,
             url: this.saveUrl,

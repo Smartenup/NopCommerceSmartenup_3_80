@@ -308,19 +308,20 @@
                             }
                         </div>
                         <div class="enter-address">
-                            @{
-                                var validationSummary = Html.ValidationSummary(true);
-                            }
-                            @if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
-                            {
-                                <div class="message-error">@validationSummary</div>
-                            }
+
                             @{
                                 var dataDictAddress = new ViewDataDictionary();
                                 //Merge ModelState (required for validation)
                                 dataDictAddress.ModelState.Merge(ViewData.ModelState);
                                 dataDictAddress.TemplateInfo.HtmlFieldPrefix = "NewAddress";
                                 @Html.Partial("_CreateOrUpdateAddress", Model.NewAddress, dataDictAddress)
+                            }
+                            @{
+                                var validationSummary = Html.ValidationSummary(true);
+                            }
+                            @if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
+                            {
+                                <div class="message-error">@validationSummary</div>
                             }
                         </div>
                     </div>

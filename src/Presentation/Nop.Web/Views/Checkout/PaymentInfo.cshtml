@@ -17,16 +17,17 @@
     <div class="page-body checkout-data">
         @Html.Widget("checkout_payment_info_top")
         <div class="section payment-info">
-            @using (Html.BeginRouteForm("CheckoutPaymentInfo", FormMethod.Post))
+            @using (Html.BeginRouteForm("CheckoutPaymentInfo", FormMethod.Post, new { @id = "frmCheckutPaymentInfo" }))
             {
+
+                <div class="info">
+                    @Html.Action(Model.PaymentInfoActionName, Model.PaymentInfoControllerName, Model.PaymentInfoRouteValues)
+                </div>
                 var validationSummary = Html.ValidationSummary(false);
                 if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
                 {
                     <div class="message-error">@validationSummary</div>
                 }
-                <div class="info">
-                    @Html.Action(Model.PaymentInfoActionName, Model.PaymentInfoControllerName, Model.PaymentInfoRouteValues)
-                </div>
                 <div class="buttons">
                     <input type="submit" name="nextstep" value="@T("Checkout.NextButton")" class="button-1 payment-info-next-step-button" />
                 </div>
