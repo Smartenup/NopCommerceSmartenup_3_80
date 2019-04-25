@@ -1,2 +1,0 @@
-DataProvider: sqlserver
-DataConnectionString: Data Source=DESKTOP-9TFK3ML;Initial Catalog=imperio;Integrated Security=False;Persist Security Info=False;User ID=DB_9B46E6_imperiodadanca_admin;;Password=uiskas7680;MultipleActiveResultSets=True
