@@ -13,14 +13,13 @@ using System.Data.Entity.SqlServer;
 namespace Nop.Data
 {
 
-
-    public class EFConfiguration : DbConfiguration
-    {
-        public EFConfiguration()
-        {
-            SetExecutionStrategy("System.Data.SqlClient", () => new SqlAzureExecutionStrategy(3, TimeSpan.FromSeconds(60)));
-        }
-    }
+    //public class EFConfiguration : DbConfiguration
+    //{
+    //    public EFConfiguration()
+    //    {
+    //        SetExecutionStrategy("System.Data.SqlClient", () => new SqlAzureExecutionStrategy(3, TimeSpan.FromSeconds(60)));
+    //    }
+    //}
 
 
     /// <summary>

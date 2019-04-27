@@ -5,7 +5,7 @@
 @using Nop.Services.Configuration;
 @{
     var displayMiniProfiler = EngineContext.Current.Resolve<Nop.Core.Domain.StoreInformationSettings>().DisplayMiniProfilerInPublicStore;
-    
+
     Html.AppendScriptParts("~/Scripts/public.ajaxcart.js");
     Html.AppendScriptParts("~/Scripts/public.common.js");
     Html.AppendScriptParts("~/Scripts/jquery-migrate-1.2.1.min.js");
@@ -80,6 +80,16 @@
     @RenderBody()
     @Html.NopCssFiles(this.Url, ResourceLocation.Foot)
     @Html.NopScripts(this.Url, ResourceLocation.Foot)
+    <script>
+          (function (o, c, t, a, d, e, s, k) {
+            o.octadesk = o.octadesk || {};
+            s = c.getElementsByTagName("body")[0];
+            k = c.createElement("script");
+            k.async = 1;
+            k.src = t + '/' + a + '?showButton=' +  d + '&openOnMessage=' + e;
+            s.appendChild(k);
+          })(window, document, 'https://chat.octadesk.services/api/widget', 'imperiodadanca',  true, true);
+    </script>
     <div id="goToTop"></div>
 </body>
 </html>

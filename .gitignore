@@ -3,3 +3,13 @@
 ################################################################################
 
 /src/.vs
+/src/Presentation/Nop.Web/Administration/obj/Release
+/src/Presentation/Nop.Web/Administration/obj/Debug
+/src/Presentation/Nop.Web/App_Data/InstalledPlugins_fabio_hom.txt
+/src/Presentation/Nop.Web/App_Data/Settings_fabio_hom.txt
+/src/Presentation/Nop.Web/App_Data/Settings_old.txt
+*.suo
+/src/Libraries/Nop.Core/obj/Debug
+/src/Libraries/Nop.Core/obj/Release
+/src/Libraries/Nop.Data/obj/Debug
+/src/Libraries/Nop.Data/obj/Release
