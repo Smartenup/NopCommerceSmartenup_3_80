@@ -17,5 +17,8 @@ namespace Nop.Plugin.Payments.PayPalDirect
         /// Additional fee
         /// </summary>
         public decimal AdditionalFee { get; set; }
+
+
+
     }
 }
