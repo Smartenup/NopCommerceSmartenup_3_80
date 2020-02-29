@@ -1,2 +1,0 @@
-DataProvider: sqlserver
-DataConnectionString: Data Source=sql5024.smarterasp.net;Initial Catalog=DB_9B46E6_dancershoes;Integrated Security=False;Persist Security Info=False;User ID=DB_9B46E6_dancershoes_admin;Password=dancer2017;MultipleActiveResultSets=True

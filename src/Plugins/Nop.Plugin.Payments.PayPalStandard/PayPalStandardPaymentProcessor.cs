@@ -12,6 +12,7 @@ using Nop.Services.Localization;
 using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Tax;
+using SmartenUP.Core.Util.Helper;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -331,13 +332,15 @@ namespace Nop.Plugin.Payments.PayPalStandard
                 builder.AppendFormat("&notify_url={0}", ipnUrl);
             }
 
+            var addressHelper = new AddressHelper(_addressAttributeParser, _workContext);
+
             //address
-            var number = string.Empty;
-            var complement = string.Empty;
+            string number = string.Empty;
+            string complement = string.Empty;
+            string cnpjcpf = string.Empty;
 
-            GetCustomNumberAndComplement(postProcessPaymentRequest.Order.BillingAddress.CustomAttributes,
-                out number, out complement);
-
+            addressHelper.GetCustomNumberAndComplement(postProcessPaymentRequest.Order.BillingAddress.CustomAttributes,
+                out number, out complement, out cnpjcpf);
 
             builder.AppendFormat("&address_override={0}", _paypalStandardPaymentSettings.AddressOverride ? "1" : "0");
             builder.AppendFormat("&first_name={0}", HttpUtility.UrlEncode(postProcessPaymentRequest.Order.BillingAddress.FirstName));
@@ -364,48 +367,9 @@ namespace Nop.Plugin.Payments.PayPalStandard
                 builder.AppendFormat("&country={0}", HttpUtility.UrlEncode(postProcessPaymentRequest.Order.BillingAddress.Country.TwoLetterIsoCode));
             else
                 builder.AppendFormat("&country={0}", "");
-            builder.AppendFormat("&zip={0}", HttpUtility.UrlEncode(postProcessPaymentRequest.Order.BillingAddress.ZipPostalCode));
+            builder.AppendFormat("&zip={0}", HttpUtility.UrlEncode(NumberHelper.ObterApenasNumeros(postProcessPaymentRequest.Order.BillingAddress.ZipPostalCode)));
             builder.AppendFormat("&email={0}", HttpUtility.UrlEncode(postProcessPaymentRequest.Order.BillingAddress.Email));
             _httpContext.Response.Redirect(builder.ToString());
-        }
-
-
-        private void GetCustomNumberAndComplement(string customAttributes, out string number, out string complement)
-        {
-            number = string.Empty;
-            complement = string.Empty;
-
-            if (!string.IsNullOrWhiteSpace(customAttributes))
-            {
-                var attributes = _addressAttributeParser.ParseAddressAttributes(customAttributes);
-
-                for (var i = 0; i < attributes.Count; i++)
-                {
-                    var valuesStr = _addressAttributeParser.ParseValues(customAttributes, attributes[i].Id);
-
-                    var attributeName = attributes[i].GetLocalized(a => a.Name, _workContext.WorkingLanguage.Id);
-
-                    if (
-                        attributeName.Equals("Número", StringComparison.InvariantCultureIgnoreCase) ||
-                        attributeName.Equals("Numero", StringComparison.InvariantCultureIgnoreCase)
-                        )
-                    {
-                        number = _addressAttributeParser.ParseValues(customAttributes, attributes[i].Id)[0];
-                    }
-
-                    if (attributeName.Equals("Complemento", StringComparison.InvariantCultureIgnoreCase))
-                        complement = _addressAttributeParser.ParseValues(customAttributes, attributes[i].Id)[0];
-                }
-            }
-
-            if (string.IsNullOrWhiteSpace(number))
-                number = "--";
-
-            if (string.IsNullOrWhiteSpace(complement))
-                complement = "--";
-
-            if (complement.Length > 40)
-                complement = complement.Substring(0, 39);
         }
 
         /// <summary>
